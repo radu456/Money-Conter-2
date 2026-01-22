@@ -108,4 +108,117 @@
       <section class="card">
         <div class="card__head">
           <div class="card__title">Rambursări (în așteptare)</div>
-          <div class
+          <div class="card__right"><span class="mono" id="refTotal">0,00</span></div>
+        </div>
+        <div class="formrow">
+          <input id="refAmount" class="input" inputmode="decimal" placeholder="Sumă (ex: 270)" />
+          <input id="refNote" class="input" placeholder="De la ce e (opțional)" />
+          <button id="btnAddRefund" class="btn">Adaugă</button>
+        </div>
+        <div class="hint">NU intră în sold până nu apeși „Încasat”.</div>
+        <div id="refList" class="list"></div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <div class="card__title">Simulare</div>
+        </div>
+        <div class="formrow">
+          <input id="simCost" class="input" inputmode="decimal" placeholder="Cost (ex: 600)" />
+          <select id="simMode" class="input">
+            <option value="big">Ca cheltuială mare (întinsă)</option>
+            <option value="today">Ca cheltuială azi (normală)</option>
+          </select>
+          <button id="btnSim" class="btn">Simulează</button>
+        </div>
+        <div id="simOut" class="simout">—</div>
+      </section>
+    </section>
+
+    <!-- Arhivă -->
+    <section class="card">
+      <div class="card__head">
+        <div class="card__title">Arhivă luni</div>
+        <div class="card__right">
+          <button class="btn btn--ghost" id="btnOpenArchive">Deschide</button>
+        </div>
+      </div>
+      <div class="hint">Totul rămâne salvat pe termen nelimitat (localStorage). Luna se arhivează automat la 00:00.</div>
+    </section>
+
+    <!-- Setări -->
+    <section class="card">
+      <div class="card__head">
+        <div class="card__title">Setări</div>
+      </div>
+      <div class="formrow">
+        <label class="lab">
+          <span>Venit/zi</span>
+          <input id="setIncome" class="input" inputmode="decimal" />
+        </label>
+        <label class="lab">
+          <span>Prag galben</span>
+          <input id="setWarn" class="input" inputmode="decimal" />
+        </label>
+        <label class="lab">
+          <span>Prag roșu</span>
+          <input id="setDanger" class="input" inputmode="decimal" />
+        </label>
+      </div>
+      <div class="btnrow">
+        <button class="btn btn--ghost" id="btnResetAll">Reset total</button>
+        <button class="btn" id="btnSaveSettings">Salvează</button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="mono" id="footInfo">—</span>
+    </footer>
+  </div>
+
+  <!-- Drawer simplu -->
+  <aside class="drawer hidden" id="drawer">
+    <div class="drawer__panel">
+      <div class="drawer__head">
+        <div class="drawer__title">Meniu</div>
+        <button class="icon-btn" id="btnCloseDrawer" aria-label="Închide">✕</button>
+      </div>
+      <div class="drawer__body">
+        <button class="btn btn--ghost w100" id="goTop">Sus (Dashboard)</button>
+        <button class="btn btn--ghost w100" id="goRefunds">Rambursări</button>
+        <button class="btn btn--ghost w100" id="goArchive">Arhivă</button>
+        <button class="btn btn--ghost w100" id="goExport">Export / Backup</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal Arhivă -->
+  <div class="modal hidden" id="modalArchive">
+    <div class="modal__box">
+      <div class="modal__head">
+        <div class="modal__title">Arhivă luni</div>
+        <button class="icon-btn" id="btnCloseArchive" aria-label="Închide">✕</button>
+      </div>
+      <div id="archiveList" class="list"></div>
+      <div class="hint">Apasă pe o lună să vezi sumar + detalii.</div>
+    </div>
+  </div>
+
+  <!-- Modal Export -->
+  <div class="modal hidden" id="modalExport">
+    <div class="modal__box">
+      <div class="modal__head">
+        <div class="modal__title">Export / Backup</div>
+        <button class="icon-btn" id="btnCloseExport" aria-label="Închide">✕</button>
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="btnExportTxt">Export TXT (luna curentă)</button>
+        <button class="btn btn--ghost" id="btnExportJson">Export JSON (tot)</button>
+      </div>
+      <div class="hint">TXT e pentru citit rapid. JSON e backup complet.</div>
+    </div>
+  </div>
+
+  <script defer src="./app.js"></script>
+</body>
+</html>
