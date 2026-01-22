@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0f17" />
+  <title>Buget Zilnic</title>
+
+  <!-- IMPORTANT pentru GitHub Pages pe subfolder: folosim ./ -->
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+</head>
+
+<body>
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu" aria-label="Meniu">☰</button>
+    <div class="topbar__title">
+      <div class="appname">Buget Zilnic</div>
+      <div class="sub" id="clockLine">—</div>
+    </div>
+    <button class="icon-btn" id="btnBackup" aria-label="Export rapid">⤓</button>
+  </header>
+
+  <div class="wrap">
+    <!-- Notificări (Rambursări în așteptare) -->
+    <div id="noticeBar" class="notice hidden">
+      <div class="notice__left">
+        <div class="notice__title">Rambursări în așteptare</div>
+        <div class="notice__sub" id="noticeText">—</div>
+      </div>
+      <button class="btn btn--ghost" id="btnOpenRefunds">Vezi</button>
+    </div>
+
+    <!-- Card principal -->
+    <section class="hero">
+      <div class="hero__label">Rămâne azi de cheltuit</div>
+      <div class="hero__value" id="remainToday">0,00 RON</div>
+      <div class="hero__meta">
+        <div class="pill">
+          <div class="pill__k">Cheltuit azi</div>
+          <div class="pill__v" id="spentToday">0,00</div>
+        </div>
+        <div class="pill">
+          <div class="pill__k">Rămâne luna asta</div>
+          <div class="pill__v" id="remainMonth">0,00</div>
+        </div>
+        <div class="pill">
+          <div class="pill__k">Zile rămase</div>
+          <div class="pill__v" id="daysLeft">0</div>
+        </div>
+        <div class="pill">
+          <div class="pill__k">Buget mâine</div>
+          <div class="pill__v" id="tomorrowBudget">0,00</div>
+        </div>
+      </div>
+
+      <div class="quick">
+        <div class="quick__row">
+          <input id="inpAmount" class="input" inputmode="decimal" placeholder="Sumă cheltuială (ex: 55)" />
+          <input id="inpNote" class="input" placeholder="Notă (opțional)" />
+          <button id="btnAddExpense" class="btn">Adaugă</button>
+        </div>
+        <div class="hint" id="todayHint">—</div>
+      </div>
+    </section>
+
+    <!-- Azi -->
+    <section class="card">
+      <div class="card__head">
+        <div class="card__title">Azi</div>
+        <div class="card__right">
+          <button class="btn btn--ghost" id="btnClearToday">Șterge azi</button>
+        </div>
+      </div>
+      <div id="todayList" class="list"></div>
+    </section>
+
+    <!-- Meniuri -->
+    <section class="grid">
+      <section class="card">
+        <div class="card__head">
+          <div class="card__title">Penalizări (scad luna viitoare)</div>
+          <div class="card__right"><span class="mono" id="penTotal">0,00</span></div>
+        </div>
+        <div class="formrow">
+          <input id="penAmount" class="input" inputmode="decimal" placeholder="Sumă (ex: 100)" />
+          <input id="penNote" class="input" placeholder="Motiv (opțional)" />
+          <button id="btnAddPenalty" class="btn">Adaugă</button>
+        </div>
+        <div id="penList" class="list"></div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <div class="card__title">Cheltuieli mari (întinse în buget)</div>
+          <div class="card__right"><span class="mono" id="bigTotal">0,00</span></div>
+        </div>
+        <div class="formrow">
+          <input id="bigAmount" class="input" inputmode="decimal" placeholder="Sumă (ex: 300)" />
+          <input id="bigNote" class="input" placeholder="Descriere (opțional)" />
+          <button id="btnAddBig" class="btn">Adaugă</button>
+        </div>
+        <div class="hint">Nu apare minus roșu “în ziua aia”. Scade automat bugetul pe zilele rămase.</div>
+        <div id="bigList" class="list"></div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <div class="card__title">Rambursări (în așteptare)</div>
+          <div class
